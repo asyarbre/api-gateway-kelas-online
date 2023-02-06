@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const coursesHandler = require('./handler/courses');
 
-module.exports = router;
+router.get('/', coursesHandler.getAll);
+ 
+ module.exports = router;
