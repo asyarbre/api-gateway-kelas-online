@@ -32,6 +32,6 @@ app.use('/orders', ordersRouter);
 app.use('/payments', paymentsRouter);
 app.use('/refresh-tokens', refreshTokensTokensRouter);
 app.use('/mentors', verifyToken, mentorsRouter);
-app.use('/chapters', chaptersRouter);
+app.use('/chapters',verifyToken, chaptersRouter);
 
 module.exports = app;
