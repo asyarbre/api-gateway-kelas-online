@@ -8,6 +8,7 @@ const verifyToken = require('../middlewares/verifyToken');
 router.get('/', coursesHandler.getAll);
 router.get('/:id', coursesHandler.get);
 
-router.post('/', coursesHandler.create);
- 
- module.exports = router;
+router.post('/',verifyToken, coursesHandler.create);
+router.put('/:id',verifyToken, coursesHandler.update);
+
+module.exports = router;
