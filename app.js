@@ -14,7 +14,7 @@ const refreshTokensTokensRouter = require('./routes/refreshTokens');
 const mentorsRouter = require('./routes/mentors');
 const chaptersRouter = require('./routes/chapters');
 const lessonsRouter = require('./routes/lessons');
-const imageCourseRouter = require('./routes/imageCourse');
+const imageCourseRouter = require('./routes/imageCourses');
 
 const verifyToken = require('./middlewares/verifyToken');
 
