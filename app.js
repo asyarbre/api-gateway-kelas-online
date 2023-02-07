@@ -38,6 +38,6 @@ app.use('/mentors', verifyToken, mentorsRouter);
 app.use('/chapters',verifyToken, chaptersRouter);
 app.use('/lessons', verifyToken, lessonsRouter);
 app.use('/image-courses', verifyToken, imageCourseRouter);
-app.use('/my-courses', myCoursesRouter);
+app.use('/my-courses', verifyToken, myCoursesRouter);
 
 module.exports = app;
