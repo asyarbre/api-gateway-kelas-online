@@ -18,7 +18,9 @@ const myCoursesRouter = require('./routes/myCourses');
 const reviewsRouter = require('./routes/reviews');
 const webhookRouter = require('./routes/webhook');
 
+//midleware
 const verifyToken = require('./middlewares/verifyToken');
+const permission = require('./middlewares/permission');
 
 const app = express();
 
@@ -31,15 +33,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
-app.use('/media', mediaRouter);
-app.use('/orders', verifyToken, orderPaymentsOrder);
+app.use('/media', verifyToken, permission('admin', 'student'), mediaRouter);
+app.use('/orders', verifyToken, permission('admin', 'student'), orderPaymentsOrder);
 app.use('/refresh-tokens', refreshTokensTokensRouter);
-app.use('/mentors', verifyToken, mentorsRouter);
-app.use('/chapters',verifyToken, chaptersRouter);
-app.use('/lessons', verifyToken, lessonsRouter);
-app.use('/image-courses', verifyToken, imageCourseRouter);
-app.use('/my-courses', verifyToken, myCoursesRouter);
-app.use('/reviews', verifyToken, reviewsRouter);
+app.use('/mentors', verifyToken, permission('admin'), mentorsRouter);
+app.use('/chapters',verifyToken, permission('admin'), chaptersRouter);
+app.use('/lessons', verifyToken, permission('admin'), lessonsRouter);
+app.use('/image-courses', verifyToken, permission('admin'), imageCourseRouter);
+app.use('/my-courses', verifyToken, permission('admin', 'student'), myCoursesRouter);
+app.use('/reviews', verifyToken, permission('admin', 'student'), reviewsRouter);
 app.use('/webhook', webhookRouter);
 
 module.exports = app;
